@@ -37,7 +37,7 @@ jobs:
 
   deploy:
     environment:
-      name: github-pages2
+      name: zplex-web-production
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
