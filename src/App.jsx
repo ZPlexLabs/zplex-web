@@ -56,7 +56,7 @@ function App() {
     };
 
     return (
-        <BrowserRouter basename="https://zplexlabs.github.io/zplex-web/">
+        <BrowserRouter basename="/zplex-web/">
             <Header />
             <Routes>
                 <Route path="/" element={<Home />} />
