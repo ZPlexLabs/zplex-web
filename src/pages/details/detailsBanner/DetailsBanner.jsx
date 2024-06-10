@@ -14,12 +14,9 @@ import PosterFallback from "../../../assets/no-poster.png";
 import { PlayIcon } from "../Playbtn";
 import VideoPopup from "../../../components/videoPopup/VideoPopup";
 
-const DetailsBanner = ({ video, crew }) => {
+const DetailsBanner = ({ data, loading, video, crew }) => {
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
-
-    const { mediaType, id } = useParams();
-    const { data, loading } = useFetch(`/${mediaType}/${id}`);
 
     const { url } = useSelector((state) => state.home);
 
