@@ -1,0 +1,68 @@
+.episode-card {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    max-width: 70vw;
+    border-radius: 12px;
+    color: #ffffff;
+    font-family: "Roboto", sans-serif;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+
+    .episode-meta {
+        display: flex;
+        flex-direction: column;
+        align-self: stretch;
+        justify-content: center;
+    }
+
+    .episode-thumb {
+        width: 200px;
+        object-fit: cover;
+        border-radius: 100px;
+    }
+
+    .episode-number {
+        font-size: 1.5rem;
+        font-weight: 900;
+        opacity: .80;
+        /* top | right | bottom | left */
+        margin: 0px 24px 2px 16px;
+        width: 3rem;
+    }
+
+    .episode-title {
+        font-size: 1rem;
+        font-weight: 700;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-height: 2.4em;
+        /* roughly 2 lines of text */
+        /* top | right | bottom | left */
+        margin: 8px 16px 8px 16px;
+    }
+
+    .episode-overview {
+        font-size: 0.95rem;
+        opacity: 0.75;
+        font-weight: 200;
+        /* top | right | bottom | left */
+        margin: 0px 8px 16px 16px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        -webkit-line-clamp: 3;
+        /* Limit to 3 lines */
+        max-height: calc(3 * 1.2rem);
+    }
+}
+
+
+.episode-card:hover {
+    transform: scale(1.05);
+}

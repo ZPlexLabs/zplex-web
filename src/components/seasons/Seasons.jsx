@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import {
     BsFillArrowLeftCircleFill,
     BsFillArrowRightCircleFill,
@@ -12,9 +12,12 @@ import PosterFallback from "../../assets/no-poster.png";
 import CircleRating from "../circleRating/CircleRating";
 
 import "../carousel/style.scss";
+import EpisodesPopup from "../episodesPopup/EpisodesPopup";
 
 const Seasons = ({ seasons, loading }) => {
     const carouselContainer = useRef();
+    const [show, setShow] = useState(false);
+    const [seasonNumber, setSeasonNumber] = useState(null);
     const { url } = useSelector((state) => state.home);
 
     const navigation = (dir) => {
@@ -31,7 +34,8 @@ const Seasons = ({ seasons, loading }) => {
         });
     };
     const seasonOnClick = (season) => {
-        console.log(season);
+        setSeasonNumber(season.season_number);
+        setShow(true);
     }
 
     const skItem = () => {
@@ -88,6 +92,12 @@ const Seasons = ({ seasons, loading }) => {
                                 </div>
                             );
                         })}
+                        {seasonNumber && <EpisodesPopup
+                            show={show}
+                            setShow={setShow}
+                            seasonNumber={seasonNumber}
+                            setSeasonNumber={setSeasonNumber}
+                        />}
                     </div>
                 ) : (
                     <div className="loadingSkeleton">
