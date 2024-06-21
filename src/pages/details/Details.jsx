@@ -22,7 +22,7 @@ const Details = () => {
         <div>
             <DetailsBanner data={detailsData} loading={detailsLoading} video={data?.results?.[0]} crew={credits?.crew} />
             {detailsData?.seasons && detailsData.seasons.length > 0 && (
-                <Seasons seasons={detailsData?.seasons} loading={detailsLoading} />
+                <Seasons seasons={detailsData?.seasons} loading={detailsLoading} showName={detailsData?.name} />
             )}
             <Cast data={credits?.cast} loading={creditsLoading} />
             <Similar mediaType={mediaType} id={id} />

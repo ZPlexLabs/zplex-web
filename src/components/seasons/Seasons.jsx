@@ -14,7 +14,7 @@ import CircleRating from "../circleRating/CircleRating";
 import "../carousel/style.scss";
 import EpisodesPopup from "../episodesPopup/EpisodesPopup";
 
-const Seasons = ({ seasons, loading }) => {
+const Seasons = ({ showName, seasons, loading }) => {
     const carouselContainer = useRef();
     const [show, setShow] = useState(false);
     const [seasonNumber, setSeasonNumber] = useState(null);
@@ -100,6 +100,7 @@ const Seasons = ({ seasons, loading }) => {
                             seasonNumber={seasonNumber}
                             setSeasonNumber={setSeasonNumber}
                             seasonId={seasonId}
+                            showName={showName}
                         />}
                     </div>
                 ) : (

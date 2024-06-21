@@ -6,7 +6,7 @@ import EpisodeCard from "../episodeCard/EpisodeCard";
 import CloseButton from "../closeBtn/CloseButton ";
 import "./style.scss";
 
-const EpisodesPopup = ({ show, setShow, seasonNumber, setSeasonNumber, seasonId }) => {
+const EpisodesPopup = ({ show, setShow, seasonNumber, setSeasonNumber, seasonId, showName }) => {
     const { mediaType, id } = useParams();
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -62,7 +62,9 @@ const EpisodesPopup = ({ show, setShow, seasonNumber, setSeasonNumber, seasonId 
                         <span className="season-title">{"Season " + data?.season_number}</span>
                         <div className="episodesList">
                             {data?.episodes.map((episode) => (
-                                <EpisodeCard key={episode.id} data={episode} />
+                                <EpisodeCard key={episode.id} data={episode}
+                                    title={`${showName} - S${String(seasonNumber).padStart(2, '0')}E${String(episode.episode_number).padStart(2, '0')} - ${episode.name}`}
+                                />
                             ))}
                         </div>
                     </>
