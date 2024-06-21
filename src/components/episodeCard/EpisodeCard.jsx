@@ -10,7 +10,7 @@ import axios from "axios";
 const EpisodeCard = ({ title, data }) => {
     const { url } = useSelector((state) => state.home);
     const posterUrl = data.still_path
-        ? url.poster + data.still_path
+        ? url.still + data.still_path
         : PosterFallback;
 
     const onEpisodeClick = () => {
