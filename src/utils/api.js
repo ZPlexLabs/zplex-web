@@ -1,6 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.themoviedb.org/3";
+const ZPLEX_API_URL = "https://zplex-api.onrender.com";
 const TMDB_TOKEN = import.meta.env.VITE_APP_TMDB_TOKEN;
 
 const headers = {
@@ -19,3 +20,14 @@ export const fetchDataFromApi = async (url, params) => {
         return err;
     }
 };
+
+
+export const fetchFromZplexApi = async (url) => {
+    try {
+        const { data } = await axios.get(ZPLEX_API_URL + url);
+        return data;
+    } catch (err) {
+        console.log(err);
+        return err;
+    }
+}
