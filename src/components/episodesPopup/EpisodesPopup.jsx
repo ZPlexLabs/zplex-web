@@ -1,19 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import useFetch from "../../hooks/useFetch";
+import { fetchDataFromApi, fetchFromZplexApi } from "../../utils/api";
+
 import EpisodeCard from "../episodeCard/EpisodeCard";
 import CloseButton from "../closeBtn/CloseButton ";
 import "./style.scss";
 
-const EpisodesPopup = ({ show, setShow, seasonNumber, setSeasonNumber }) => {
+const EpisodesPopup = ({ show, setShow, seasonNumber, setSeasonNumber, seasonId }) => {
     const { mediaType, id } = useParams();
-    const { data, loading } = useFetch(`/${mediaType}/${id}/season/${seasonNumber}`);
+    const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const fetchEpisodes = async () => {
+        try {
+            const original = await fetchDataFromApi(`/${mediaType}/${id}/season/${seasonNumber}`);
+            const zplex = await fetchFromZplexApi(`/shows/${id}/seasons/${seasonId}`);
+
+            let newEpisodes = original?.episodes.map((item) => {
+                const fileId = zplex.find((episode) => episode.id === item.id)?.fileId;
+                if (!fileId) return item;
+                return {
+                    ...item,
+                    fileId: fileId,
+                };
+            });
+
+            original.episodes = newEpisodes;
+            setData(original);
+            setLoading(false);
+        } catch (error) {
+            console.error('Error fetching episodes:', error);
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (seasonNumber) {
+            fetchEpisodes();
+        }
+    }, [seasonNumber]);
 
     const hidePopup = () => {
         setShow(false);
         setSeasonNumber(null);
     };
-    
+
     return (
         <div className={`seasonPopup ${show ? "visible" : ""}`}>
             <div className="opacityLayer" onClick={hidePopup}></div>

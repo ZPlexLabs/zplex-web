@@ -79,8 +79,8 @@ const Explore = () => {
                 <div className="pageHeader">
                     <div className="pageTitle">
                         {mediaType === "tv"
-                            ? "Explore TV Shows"
-                            : "Explore Movies"}
+                            ? "My TV Shows"
+                            : "My Movies"}
                     </div>
                 </div>
                 {loading && <Spinner initial={true} />}

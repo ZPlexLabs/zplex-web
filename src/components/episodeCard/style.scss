@@ -18,10 +18,29 @@
         justify-content: center;
     }
 
-    .episode-thumb {
-        width: 200px;
-        object-fit: cover;
-        border-radius: 100px;
+    .episode-thumb-container {
+        position: relative;
+        display: inline-block;
+
+        .play-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            width: 25px;
+            height: 25px;
+            transition: all 0.25s ease;
+        }
+
+        .episode-thumb {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+            width: 200px;
+            border-radius: 100px;
+        }
     }
 
     .episode-number {
@@ -65,4 +84,11 @@
 
 .episode-card:hover {
     transform: scale(1.05);
+
+    .episode-thumb-container {
+        .play-icon {
+            width: 45px;
+            height: 45px;
+        }
+    }
 }

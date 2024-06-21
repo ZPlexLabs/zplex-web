@@ -18,6 +18,7 @@ const Seasons = ({ seasons, loading }) => {
     const carouselContainer = useRef();
     const [show, setShow] = useState(false);
     const [seasonNumber, setSeasonNumber] = useState(null);
+    const [seasonId, setSeasonId] = useState(null);
     const { url } = useSelector((state) => state.home);
 
     const navigation = (dir) => {
@@ -35,6 +36,7 @@ const Seasons = ({ seasons, loading }) => {
     };
     const seasonOnClick = (season) => {
         setSeasonNumber(season.season_number);
+        setSeasonId(season.id);
         setShow(true);
     }
 
@@ -97,6 +99,7 @@ const Seasons = ({ seasons, loading }) => {
                             setShow={setShow}
                             seasonNumber={seasonNumber}
                             setSeasonNumber={setSeasonNumber}
+                            seasonId={seasonId}
                         />}
                     </div>
                 ) : (
