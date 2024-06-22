@@ -16,6 +16,10 @@ const SearchResult = () => {
     const [loading, setLoading] = useState(false);
     const { query } = useParams();
 
+    useEffect(() => {
+        document.title = `Search results for ${query}`;
+    }, [query]);
+
     const fetchInitialData = () => {
         setLoading(true);
         fetchDataFromApi(`/search/multi?query=${query}&page=${pageNum}`).then(

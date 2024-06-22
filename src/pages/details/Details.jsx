@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import "./style.scss";
 
@@ -18,6 +18,10 @@ const Details = () => {
         `/${mediaType}/${id}/credits`
     );
 
+    useEffect(() => {
+        document.title = detailsData?.name || detailsData?.title || "Details";
+    }, [detailsData]);
+    
     return (
         <div>
             <DetailsBanner data={detailsData} loading={detailsLoading} video={data?.results?.[0]} crew={credits?.crew} />

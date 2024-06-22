@@ -18,6 +18,10 @@ const Explore = () => {
     const [loading, setLoading] = useState(false);
     const { mediaType } = useParams();
     const pageSize = 100;
+    // set page title based on media type
+    useEffect(() => {
+        document.title = mediaType === "tv" ? "TV Shows" : "Movies";
+    }, [mediaType]);
 
     const fetchInitialData = () => {
         setLoading(true);
