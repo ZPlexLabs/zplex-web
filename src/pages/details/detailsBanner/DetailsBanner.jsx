@@ -13,8 +13,9 @@ import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayIcon } from "../Playbtn";
 import VideoPopup from "../../../components/videoPopup/VideoPopup";
+import axios from "axios";
 
-const DetailsBanner = ({ data, loading, video, crew }) => {
+const DetailsBanner = ({ data, loading, video, crew, fileId }) => {
     const [show, setShow] = useState(false);
     const [videoId, setVideoId] = useState(null);
 
@@ -63,11 +64,10 @@ const DetailsBanner = ({ data, loading, video, crew }) => {
                                     </div>
                                     <div className="right">
                                         <div className="title">
-                                            {`${
-                                                data.name || data.title
-                                            } (${dayjs(
-                                                data?.release_date || data?.first_air_date
-                                            ).format("YYYY")})`}
+                                            {`${data.name || data.title
+                                                } (${dayjs(
+                                                    data?.release_date || data?.first_air_date
+                                                ).format("YYYY")})`}
                                         </div>
                                         <div className="subtitle">
                                             {data.tagline}
@@ -84,13 +84,21 @@ const DetailsBanner = ({ data, loading, video, crew }) => {
                                             <div
                                                 className="playbtn"
                                                 onClick={() => {
-                                                    setShow(true);
-                                                    setVideoId(video.key);
+                                                    if (fileId) {
+                                                        const requestData = {
+                                                            title: `${data.name || data.title} (${dayjs(data?.release_date || data?.first_air_date).format("YYYY")})`,
+                                                            fileId: fileId
+                                                        };
+                                                        axios.post('http://localhost:62941/remote-play', requestData);
+                                                    } else {
+                                                        setShow(true);
+                                                        setVideoId(video.key);
+                                                    }
                                                 }}
                                             >
                                                 <PlayIcon />
                                                 <span className="text">
-                                                    Watch Trailer
+                                                    Watch {fileId ? "Movie" : "Trailer"}
                                                 </span>
                                             </div>
                                         </div>

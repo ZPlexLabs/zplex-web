@@ -22,7 +22,6 @@ const EpisodeCard = ({ title, data }) => {
             title: title,
             fileId: fileId
         };
-        console.log(`episode click ${JSON.stringify(requestData)}`);
         axios.post('http://localhost:62941/remote-play', requestData);
     }
 
