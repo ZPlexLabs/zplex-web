@@ -66,7 +66,7 @@ const DetailsBanner = ({ data, loading, video, crew }) => {
                                             {`${
                                                 data.name || data.title
                                             } (${dayjs(
-                                                data?.release_date
+                                                data?.release_date || data?.first_air_date
                                             ).format("YYYY")})`}
                                         </div>
                                         <div className="subtitle">
