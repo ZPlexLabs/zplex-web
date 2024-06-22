@@ -4,12 +4,14 @@ import { fetchDataFromApi, fetchFromZplexApi } from "../../utils/api";
 
 import EpisodeCard from "../episodeCard/EpisodeCard";
 import CloseButton from "../closeBtn/CloseButton ";
+import Spinner from "../spinner/Spinner";
 import "./style.scss";
 
 const EpisodesPopup = ({ show, setShow, seasonNumber, setSeasonNumber, seasonId, showName }) => {
     const { mediaType, id } = useParams();
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+
     const fetchEpisodes = async () => {
         try {
             const original = await fetchDataFromApi(`/${mediaType}/${id}/season/${seasonNumber}`);
@@ -49,15 +51,7 @@ const EpisodesPopup = ({ show, setShow, seasonNumber, setSeasonNumber, seasonId,
             <div className="opacityLayer" onClick={hidePopup}></div>
             <div className="seasonsList">
                 <CloseButton className="seasonPopupCloseButton" onClick={hidePopup} />
-
-                {loading ? (
-                    <div className="skeletonBlock">
-                        <div className="skeletonItem"></div>
-                        <div className="skeletonItem"></div>
-                        <div className="skeletonItem"></div>
-                        <div className="skeletonItem"></div>
-                    </div>
-                ) : (
+                {loading ? (<Spinner initial={true} />) : (
                     <>
                         <span className="season-title">{"Season " + data?.season_number}</span>
                         <div className="episodesList">
