@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.themoviedb.org/3";
-const ZPLEX_API_URL = "https://zplex-api.onrender.com";
+const ZPLEX_API_URL = import.meta.env.ZPLEX_API_URL;
 const TMDB_TOKEN = import.meta.env.VITE_APP_TMDB_TOKEN;
 
 const headers = {
