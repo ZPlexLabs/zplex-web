@@ -2,7 +2,7 @@ name: GitHub Actions Vercel Production Deployment
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-  ZPLEX_API_BASE_URL: ${{ secrets.ZPLEX_API_BASE_URL }}
+  VITE_ZPLEX_API_BASE_URL: ${{ secrets.VITE_ZPLEX_API_BASE_URL }}
   VITE_APP_TMDB_TOKEN: ${{ secrets.VITE_APP_TMDB_TOKEN }}
 
 on:
