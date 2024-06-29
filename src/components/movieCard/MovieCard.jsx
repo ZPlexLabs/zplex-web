@@ -1,28 +1,20 @@
 import React from "react";
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./style.scss";
 import Img from "../lazyLoadImage/Img";
-import CircleRating from "../circleRating/CircleRating";
-import Genres from "../genres/Genres";
 import PosterFallback from "../../assets/no-poster.png";
 
 const MovieCard = ({ data, fromSearch, mediaType }) => {
     const { url } = useSelector((state) => state.home);
-    const navigate = useNavigate();
     const posterPath = data.posterPath || data.poster_path;
     const posterUrl = posterPath
         ? url.poster + posterPath
         : PosterFallback;
+
     return (
-        <div
-            className="movieCard"
-            onClick={() =>
-                navigate(`/${data.media_type || mediaType}/${data.id}`)
-            }
-        >
+        <a className="movieCard" href={`/${data.media_type || mediaType}/${data.id}`}>
             <div className="posterBlock">
                 <Img className="posterImg" src={posterUrl} />
             </div>
@@ -32,7 +24,7 @@ const MovieCard = ({ data, fromSearch, mediaType }) => {
                     {dayjs(data.release_date).format("MMM D, YYYY")}
                 </span>
             </div>
-        </div>
+        </a>
     );
 };
 
