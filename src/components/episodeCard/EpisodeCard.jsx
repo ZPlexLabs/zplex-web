@@ -26,7 +26,7 @@ const EpisodeCard = ({ title, data }) => {
     }
 
     return (
-        <div className="episode-card" onClick={onEpisodeClick}>
+        <div className={`episode-card ${data.fileId ? 'episode-card-hover' : ''}`}  onClick={onEpisodeClick}>
             <span className="episode-number">{data?.episode_number}</span>
             <div className="episode-thumb-container">
                 <Img className={`episode-thumb ${!data.fileId ? 'blacked-out' : ''}`}
