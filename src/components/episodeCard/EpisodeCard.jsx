@@ -29,7 +29,8 @@ const EpisodeCard = ({ title, data }) => {
         <div className="episode-card" onClick={onEpisodeClick}>
             <span className="episode-number">{data?.episode_number}</span>
             <div className="episode-thumb-container">
-                <Img className="episode-thumb" src={posterUrl} alt={`Episode ${data?.episode_number} ${data?.name}`} />
+                <Img className={`episode-thumb ${!data.fileId ? 'blacked-out' : ''}`}
+                    src={posterUrl} alt={`Episode ${data?.episode_number} ${data?.name}`} />
                 {data.fileId && <img className="play-icon" src={playButton} />}
             </div>
             <div className="episode-meta">

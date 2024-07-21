@@ -62,3 +62,7 @@ body {
         }
     }
 }
+
+.blacked-out {
+    filter: grayscale(100%);
+}
